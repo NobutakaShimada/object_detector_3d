@@ -1,0 +1,15 @@
+<launch>
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+    <arg name="enable_pointcloud" value="true" />
+  </include>
+
+  <node name="object_detector_3d" pkg="object_detector_3d" type="main_object_detector_3d.py">
+    <param name="topic_camera_info" value="/camera/color/camera_info"/>
+    <param name="topic_extrinsics" value="/camera/extrinsics/depth_to_color"/>
+    <param name="topic_image_raw" value="/camera/color/image_raw"/>
+    <param name="topic_pointcloud2" value="/camera/depth/color/points"/>
+    <param name="publish_result_image" value="true"/>
+    <param name="data_directory" value="$(find object_detector_3d)/data"/>
+  </node>
+</launch>
+
